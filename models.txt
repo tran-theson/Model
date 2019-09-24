@@ -1,0 +1,13 @@
+Given that code is trivial for both (GIST + Network and Raw Pixel + Network), 
+you can try three approaches for a given project.
+
+1. GIST + Dense layers (GIST is not space-distributed)
+2. Raw Pixels + CNN + Dense Layers
+3. Raw pixels + CNN + Dense + input layer 2 (GIST) + Dense
+
+Other classifiers
+1. NB
+2. kNN
+3. SVM
+
+Note: for each model, two pgs: one with CV, another with 30% split
