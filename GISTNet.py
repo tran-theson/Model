@@ -46,7 +46,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
 #
 
 batch_size = 64
-epochs = 10
+epochs = 20
 
 model = Sequential()
 model.add(Dense(160, activation='relu', input_dim=320))
@@ -64,19 +64,25 @@ test_eval = model.evaluate(X_test, y_test, verbose=0)
 
 # Display results
 print('The accuracy is:', test_eval[1])
-print('The loss is:', test_eval[0])
+print('The evaluation loss is:', test_eval[0])
 
 conf_mat2 = np.around(conf_mat_norm,decimals=2) # rounding to display in figure
-plt.imshow(conf_mat2,interpolation='nearest')
-for x in range(len(list_fams)):
-  for y in range(len(list_fams)):
-    fg=plt.annotate(str(conf_mat2[x][y]),xy=(y,x),ha='center',va='center')
-    fg.set_fontsize(5)
+##plt.imshow(conf_mat2,interpolation='nearest')
+##for x in range(len(list_fams)):
+##  for y in range(len(list_fams)):
+##    fg=plt.annotate(str(conf_mat2[x][y]),xy=(y,x),ha='center',va='center')
+##    fg.set_fontsize(5)
+##
+##plt.xticks(range(len(list_fams)),list_fams,rotation=90,fontsize=8)
+##plt.yticks(range(len(list_fams)),list_fams,fontsize=8)
+##plt.title('Confusion matrix')
+##plt.colorbar()
+##plt.show()
+##plt.savefig('gist_matrix.png')
 
-plt.xticks(range(len(list_fams)),list_fams,rotation=90,fontsize=8)
-plt.yticks(range(len(list_fams)),list_fams,fontsize=8)
-plt.title('Confusion matrix')
-plt.colorbar()
-plt.show()
-plt.savefig('gist_matrix.png')
-
+# Save conf. matrix into a dat file for post-processing
+os.chdir('..')
+with open('./dat/conf_mat_gist.dat','wb') as f:
+    for line in np.matrix(conf_mat2):
+        np.savetxt(f,line,fmt='%.2f',)
+f.close()
