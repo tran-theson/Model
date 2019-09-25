@@ -50,7 +50,7 @@ batch_size = 64
 epochs = 10
 # Implement of learning rate schedule
 def lr_decay(epoch):
-    return 0.01*math.pow(0.6,epoch)
+    return 0.01*math.pow(0.8,epoch)
 lr_decay_callback = keras.callbacks.LearningRateScheduler(lr_decay,verbose=1)
 
 
