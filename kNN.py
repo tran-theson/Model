@@ -64,7 +64,7 @@ conf_mat_norm = conf_mat.astype('float')/conf_mat.sum(axis=1)[:,np.newaxis]
 #
 
 print("Accuracy:",metrics.accuracy_score(y_test, y_predict))
-print("Loss:",metrics.zero_one_loss(y_test, y_predict))
+print("Evaluation Loss:",metrics.zero_one_loss(y_test, y_predict))
 print("Precision:", metrics.precision_score(y_test,y_predict, average='macro'))
 
 #print("Recal score:", metrics.recall_score(y_test,y_predict,average='micro'))
@@ -74,23 +74,23 @@ print("F-1 score:", metrics.f1_score(y_test,y_predict,average='macro'))
 os.chdir('..')
 conf_mat2 = np.around(conf_mat_norm,decimals=2) # rounding to display in figure
 avg_diagonal = np.trace(conf_mat2)/len(list_fams)
-print('Average of the Confusion matrix diagonal: ', avg_diagonal) # average diagonal values
+print('Average of the Confusion matrix : ', avg_diagonal) # average diagonal values
 
-plt.imshow(conf_mat2,interpolation='nearest')
-for x in range(len(list_fams)):
-  for y in range(len(list_fams)):
-    fg=plt.annotate(str(conf_mat2[x][y]),xy=(y,x),ha='center',va='center')
-    fg.set_fontsize(5)
-
-plt.xticks(range(len(list_fams)),list_fams,rotation=90,fontsize=7)
-plt.yticks(range(len(list_fams)),list_fams,fontsize=7)
-plt.title('Confusion matrix')
-plt.colorbar()
-plt.show()
-plt.savefig('./fig/confusion_matrix.png')
+##plt.imshow(conf_mat2,interpolation='nearest')
+##for x in range(len(list_fams)):
+##  for y in range(len(list_fams)):
+##    fg=plt.annotate(str(conf_mat2[x][y]),xy=(y,x),ha='center',va='center')
+##    fg.set_fontsize(5)
+##
+##plt.xticks(range(len(list_fams)),list_fams,rotation=90,fontsize=7)
+##plt.yticks(range(len(list_fams)),list_fams,fontsize=7)
+##plt.title('Confusion matrix')
+##plt.colorbar()
+##plt.show()
+##plt.savefig('./fig/confusion_matrix.png')
 
 # Save conf. matrix into a dat file for post-processing
-with open('./dat/conf_mat.dat','wb') as f:
+with open('../dat/conf_mat_knn.dat','wb') as f:
     for line in np.matrix(conf_mat2):
         np.savetxt(f,line,fmt='%.2f',)
 f.close()
