@@ -81,18 +81,18 @@ print('The accuracy is:', test_eval[1])
 print('The evaluation loss is:', test_eval[0])
 
 conf_mat2 = np.around(conf_mat_norm,decimals=2) # rounding to display in figure
-plt.imshow(conf_mat2,interpolation='nearest')
-for x in range(len(list_fams)):
-  for y in range(len(list_fams)):
-    fg=plt.annotate(str(conf_mat2[x][y]),xy=(y,x),ha='center',va='center')
-    fg.set_fontsize(5)
-
-plt.xticks(range(len(list_fams)),list_fams,rotation=90,fontsize=8)
-plt.yticks(range(len(list_fams)),list_fams,fontsize=8)
-plt.title('Confusion matrix')
-plt.colorbar()
-plt.show()
-plt.savefig('gist_matrix.png')
+##plt.imshow(conf_mat2,interpolation='nearest')
+##for x in range(len(list_fams)):
+##  for y in range(len(list_fams)):
+##    fg=plt.annotate(str(conf_mat2[x][y]),xy=(y,x),ha='center',va='center')
+##    fg.set_fontsize(5)
+##
+##plt.xticks(range(len(list_fams)),list_fams,rotation=90,fontsize=8)
+##plt.yticks(range(len(list_fams)),list_fams,fontsize=8)
+##plt.title('Confusion matrix')
+##plt.colorbar()
+##plt.show()
+##plt.savefig('gist_matrix.png')
 
 # Save conf. matrix into a dat file for post-processing
 os.chdir('..')
